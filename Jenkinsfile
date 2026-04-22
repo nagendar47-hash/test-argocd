@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        GIT_REPO      = "https://github.com/your-org/k8s-manifests.git"
+        GIT_REPO      = "https://github.com/nagendar47-hash/test-argocd.git"
         ARGOCD_SERVER = "192.168.64.6:32443"      // ← your node IP : argocd nodeport
         APP_NAME      = "my-app"
     }
@@ -14,7 +14,6 @@ pipeline {
                 echo "---- Cloning K8s Manifests Repo ----"
                 git branch: 'main',
                     url: "${GIT_REPO}",
-                    credentialsId: 'GIT_CREDENTIALS'
             }
         }
 
@@ -23,10 +22,10 @@ pipeline {
                 echo "---- Validating K8s YAML files ----"
                 sh """
                     kubectl apply --dry-run=client \
-                        -f apps/my-app/deployment.yaml
+                        -f deployment.yaml
 
                     kubectl apply --dry-run=client \
-                        -f apps/my-app/service.yaml
+                        -f service.yaml
 
                     echo "✅ All manifests are valid!"
                 """
