@@ -7,7 +7,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/your-org/k8s-manifests.git
+    repoURL: https://github.com/nagendar47-hash/test-argocd.git
     targetRevision: main
     path: apps/my-app
   destination:
